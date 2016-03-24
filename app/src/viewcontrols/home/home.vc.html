@@ -1,5 +1,9 @@
 <h1>Welcome to my Blog</h1>
 <plat-button plat-tap="create" class="button-primary">Create a New Blog Post</plat-button>
 <div>
-    
+    <plat-foreach class="blogposts" plat-context="">
+        <h2> {{title}} </h2>
+        <h3> {{author}} </h3>
+        <plat-button plat-tap="">See This Post</plat-button>
+    </plat-foreach>
 </div>

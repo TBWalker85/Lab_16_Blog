@@ -1,5 +1,7 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
+import PostrepoRepository from '../../repositories/postrepo/postrepo.repo';
+import PostserviceService from '../../services/postservice/postservice.svc';
 
 export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
@@ -12,4 +14,4 @@ export default class HomeViewControl extends BaseViewControl {
     
 }
 
-register.viewControl('home-vc', HomeViewControl);
+register.viewControl('home-vc', HomeViewControl, [PostserviceService, PostrepoRepository]);
