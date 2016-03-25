@@ -1,31 +1,33 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
-import HomeViewControl from '../../viewcontrols/home/home.vc'
 import PostrepoRepository from '../../repositories/postrepo/postrepo.repo';
+import HomeViewControl from '../home/home.vc';
 
 export default class CreatepostsViewControl extends BaseViewControl {
     templateString: string = require('./createposts.vc.html');
 
-    context: any = {
-        author: '',
+    context = {
         title: '',
+        author: '',
         content: ''
     };
     
-    publish(): void {
-        this.PostrepoRepository.publish(this.context.author, this.context.title, this.context.content)
-        .then((success) => {
+    constructor(private postRepo: PostrepoRepository) {
+        super();
+    }
+    
+    submit(): void {
+        let blogPost: models.IBlogPost = {
+            title: this.context.title,
+            author: this.context.author,
+            content: this.context.content
+        };
+        this.postRepo.submitPost(blogPost).then((success) => {
+            console.log(success);
             this.navigator.navigate(HomeViewControl);
-        }).catch((error) => {
-            this.context.error = error;
+        }, (err) => {
+            console.log(err);
         });
-        // this.navigator.navigate('home-vc', {
-        //     parameters: {
-        //         author: this.context.author,
-        //         title: this.context.title,
-        //         content: this.context.content
-        //     }
-        // })
     }
 }
 

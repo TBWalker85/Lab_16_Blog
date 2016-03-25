@@ -11,8 +11,8 @@ export default class MyApp extends App {
 
         router.configure([
             { pattern: '', view: HomeViewControl },
-            { pattern: 'create', view: CreatepostsViewControl },
-            { pattern: 'singlepost:id', view: SinglepostViewControl }
+            { pattern: 'compose', view: CreatepostsViewControl },
+            { pattern: 'posts/:someid', view: SinglepostViewControl }
         ]);
     }
 

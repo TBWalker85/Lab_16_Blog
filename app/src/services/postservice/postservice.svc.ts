@@ -3,27 +3,42 @@ import BaseService from '../base/base.svc';
 
 export default class PostserviceService extends BaseService {
 
-    publish(title: string, author: string, content: string): async.IThenable<models.IPost> {
-
-    return this.http.json<models.IResponse>({
-        method: 'POST',
-        url: this.host + 'home/home.html',
-        data: <models.IPost>{
-            title: title,
-            author: author,
-            content: content
-        }
-    }).then(
-        (success) => {
-            return <models.IPost>{
-                id: success.response.data,
-            };
-        },
-        (error): any => {
-            throw error.response.message;
-        }
-    );
-}
+    getAllPosts(): async.IAjaxThenable<Array<models.IBlogPost>>{
+        return this.http.json<Array<models.IBlogPost>>({
+            method: 'GET',
+            url: this.host + '/posts'
+        }).then((success) => {
+            return success.response;
+        }, (err) => {
+            console.log(err);
+            throw err;
+        });
+    }
+    
+    getPost(postID: string): async.IAjaxThenable<models.IBlogPost> {
+        return this.http.json<models.IBlogPost>({
+            method: 'GET',
+            url: this.host + '/posts/' + postID
+        }).then((success) => {
+            return success.response;
+        }, (err) => {
+            console.log(err);
+            throw err;
+        });
+    }
+    
+    submitPost(blogPost: models.IBlogPost): async.IAjaxThenable<string> {
+        return this.http.json({
+            method: 'POST',
+            url: this.host + '/posts',
+            data: blogPost
+        }).then((success) => {
+            return success.response;
+        }, (err) => {
+            console.log(err);
+            throw err;
+        });
+    }
 }
 
 register.injectable('postservice-svc', PostserviceService);

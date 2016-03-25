@@ -3,21 +3,21 @@ import BaseRepository from '../base/base.repo';
 import PostserviceService from '../../services/postservice/postservice.svc';
 
 export default class PostrepoRepository extends BaseRepository {
-    title: string;
-    author: string;
-    content: string;
     
-    constructor(PostserviceService: PostserviceService){
+    constructor(private postSVC: PostserviceService) {
         super();
     }
+
+    getAllPosts(): async.IThenable<Array<models.IBlogPost>> {
+        return this.postSVC.getAllPosts();
+    }
     
-    publish(title: string, author: string, content: string): async.IThenable<boolean> {
-        return this.PostserviceService.publish(title, author, content).then((post) => {
-            this.title = post.title;
-            this.author = post.author;
-            this.content = post.content;
-            return true;
-        });
+    getpost(postID: string): async.IThenable<models.IBlogPost> {
+        return this.postSVC.getPost(postID);
+    }
+    
+    submitPost(post: models.IBlogPost): async.IThenable<string> {
+        return this.postSVC.submitPost(post);
     }
 }
 

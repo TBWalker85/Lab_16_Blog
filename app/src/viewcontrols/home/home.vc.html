@@ -1,9 +1,12 @@
 <h1>Welcome to my Blog</h1>
-<plat-button plat-tap="create" class="button-primary">Create a New Blog Post</plat-button>
+<plat-button plat-tap="goToCompose()" class="button-primary button-jumbo">Create a New Blog Post</plat-button>
 <div>
-    <plat-foreach class="blogposts" plat-context="">
-        <h2> {{title}} </h2>
-        <h3> {{author}} </h3>
-        <plat-button plat-tap="details()" class="button-primary">See This Post</plat-button>
+    <plat-foreach class="blogposts" plat-context="posts">
+        <div class="post">
+            <h2> {{title}} </h2>
+            <h3> {{author}} </h3>
+            <h4> {{createdAt}}</h4>
+            <plat-button plat-tap="readMore(id)" class="button-secondary">Read More...</plat-button>
+        </div>
     </plat-foreach>
 </div>

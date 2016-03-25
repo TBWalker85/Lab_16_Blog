@@ -1,8 +1,9 @@
-<plat-input type="text" plat-bind="author" placeholder="author"></plat-input>
+<h1>Compose a Blog Post</h1>
 <br>
-<plat-input type="text" plat-bind="title" placeholder="title"></plat-input>
+<plat-input type="text" plat-bind="title" placeholder="Title"></plat-input>
 <br>
-<textarea plat-bind="content" placeholder="content"></textarea>
+<plat-input type="text" plat-bind="author" placeholder="Author"></plat-input>
 <br>
-<plat-button plat-tap="publish()" class="button-primary">Publish</plat-button>
+<textarea plat-bind="content" placeholder="post content"></textarea>
 <br>
+<plat-button plat-tap="submit()" class="button-primary">Publish</plat-button>
