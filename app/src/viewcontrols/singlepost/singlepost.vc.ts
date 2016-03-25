@@ -5,6 +5,10 @@ export default class SinglepostViewControl extends BaseViewControl {
     templateString: string = require('./singlepost.vc.html');
 
     context: any = {};
+    
+    home(): void {
+        this.navigator.navigate('home-vc');
+    }
 }
 
 register.viewControl('singlepost-vc', SinglepostViewControl);
