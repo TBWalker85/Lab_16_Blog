@@ -7,7 +7,7 @@ export default class PostserviceService extends BaseService {
 
     return this.http.json<models.IResponse>({
         method: 'POST',
-        url: this.host + '/users/register',
+        url: this.host + 'home/home.html',
         data: <models.IPost>{
             title: title,
             author: author,

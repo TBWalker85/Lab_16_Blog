@@ -12,6 +12,10 @@ export default class HomeViewControl extends BaseViewControl {
         this.navigator.navigate('createposts-vc');
     }
     
+    details(): void {
+        this.navigator.navigate('singlepost-vc:id');
+    }
+    
 }
 
 register.viewControl('home-vc', HomeViewControl, [PostserviceService, PostrepoRepository]);
